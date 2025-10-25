@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Car Codes — تطبيق الأكواد</title>
+  <link rel="manifest" href="manifest.json" />
+<link rel="stylesheet" href="styles.css" />
+  <!-- LZ-String (ضغط/فك) -->
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Car Codes — بحث عن الرموز</h1>
+    <div id="storageUsageDisplay" class="storage-display"></div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="searchBox" placeholder="ابحث عن الرمز (مثال: P1646)" />
+      <label><input type="checkbox" id="exactMatch" />مطابقة تامة</label>
+      <label><input type="checkbox" id="caseSensitive" />حساسية حالة الأحرف</label>
+      <button id="checkStorageBtn">فحص التخزين</button>
+      <button id="clearStorageBtn">مسح التخزين</button>
+      <div id="storageStatus" class="muted"></div>
+      <div id="storageInfo" class="muted"></div>
+    </section>
+
+    <section class="uploader">
+      <label class="file-label">
+        اختر ملفات HTML:
+        <input id="fileInput" type="file" accept=".html,.htm" multiple />
+      </label>
+      <label><input id="compressFiles" type="checkbox" checked />تفعيل الضغط قبل الحفظ</label>
+    </section>
+
+    <section class="results-area">
+      <div id="results"></div>
+      <div id="noResults" class="no-results" style="display:none">🚫 لا نتائج</div>
+      <div id="searchStats" class="muted"></div>
+    </section>
+
+    <aside class="sidebar">
+      <h3>الملفات المحملة</h3>
+      <div id="loadedFilesList" class="files-list">لا توجد ملفات محملة</div>
+      <div id="progressContainer" style="display:none">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- عارض الملف -->
+  <div id="fileViewer" class="file-viewer" style="display:none">
+    <div class="file-viewer-inner">
+      <div class="file-controls">
+        <span id="fileTitle"></span>
+        <button onclick="zoomIn()">+</button>
+        <button onclick="zoomOut()">-</button>
+        <button onclick="resetZoom()">100%</button>
+        <button onclick="hideFileViewer()">إغلاق</button>
+      </div>
+      <div id="fileContent" class="file-content"></div>
+    </div>
+  </div>
+
+  <!-- رسائل -->
+  <div id="errorMessage" class="toast error" style="display:none"></div>
+  <div id="successMessage" class="toast success" style="display:none"></div>
+
+  <!-- banner التثبيت (PWA) -->
+  <div id="installBanner" class="install-banner" style="display:none">
+    <button id="installBtn">تثبيت التطبيق</button>
+  </div>
+
+  <!-- سكربت التطبيق الرئيسي -->
+  <script src="/main.js"></script>
+</body>
+</html>
